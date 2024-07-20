@@ -7,7 +7,7 @@ const componentsHandler = function (client, mainPath) {
       const componentsFiles = fs
         .readdirSync(`${mainPath}/components/${folder}`)
         .filter((file) => file.endsWith(".js"));
-      const { buttons, selectMenus } = client;
+      const { buttons, selectMenus, modals } = client;
       switch (folder) {
         case "buttons":
           for (const file of componentsFiles) {
@@ -19,6 +19,12 @@ const componentsHandler = function (client, mainPath) {
           for (const file of componentsFiles) {
             const menu = require(`${mainPath}/components/${folder}/${file}`);
             selectMenus.set(menu.data.name, menu);
+          }
+          break;
+        case 'modals':
+          for (const file of componentsFiles) {
+            const modal = require(`${mainPath}/components/${folder}/${file}`);
+            modals.set(modal.data.name, modal);
           }
           break;
         default:

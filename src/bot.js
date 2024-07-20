@@ -7,6 +7,7 @@ const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.buttons = new Collection();
 client.selectMenus = new Collection();
+client.modals = new Collection();
 client.commandsArray = [];
 const mainPath = `${process.env.HOME}/${process.env.FOLDER_NAME}/src`;
 const functionFolders = fs.readdirSync(`${mainPath}/functions`);

@@ -1,45 +1,72 @@
+const { InteractionType } = require("discord.js");
+
 module.exports = {
-  'name': 'interactionCreate',
-  async execute(interection, client){
-    if (interection.isChatInputCommand()) {
+  name: "interactionCreate",
+  async execute(interaction, client) {
+    if (interaction.isChatInputCommand()) {
       const { commands } = client;
-      const { commandName } = interection;
+      const { commandName } = interaction;
       const command = commands.get(commandName);
-      if (!command)
-        return;
-      try{
-        await command.execute(interection, client);
-      } catch(err) {
+      if (!command) return;
+      try {
+        await command.execute(interaction, client);
+      } catch (err) {
         console.log(err);
-        await interection.reply({
-          content: 'Something went wrong while executing the command',
-          ephemeral: true
+        await interaction.reply({
+          content: "Something went wrong while executing the command",
+          ephemeral: true,
         });
       }
-    } else if(interection.isButton()) {
-      const { buttons } = client;
-      const { customId } = interection;
-      const button = buttons.get(customId);
-      if (!button) {
-        return new Error('There is no code for this button');
+    } else if (interaction.isContextMenuCommand()) {
+      const { commands } = client;
+      const { commandName } = interaction;
+      const contextCommand = commands.get(commandName);
+      if (!contextCommand) return;
+      try {
+        await contextCommand.execute(interaction, client);
+      } catch (err) {
+        console.log(err);
+        await interaction.reply({
+          content: "Something went wrong while executing the command",
+          ephemeral: true,
+        });
+      }
+    }  else if (interaction.type == InteractionType.ModalSubmit) {
+      const { modals } = client;
+      const { customId } = interaction;
+      const modal = modals.get(customId);
+      if (!modal) {
+        return new Error("There is no code for this modal");
       }
       try {
-        await button.execute(interection, client);
-      } catch(err) {
+        await modal.execute(interaction, client);
+      } catch (err) {
         console.log(err);
       }
-    } else if (interection.isSelectMenu) {
-      const { selectMenus } = client;
-      const { customId } = interection;
-      const menu = selectMenus.get(customId);
-      if (!menu) {
-        return new Error('There is no code for this menu');
+    }else if (interaction.isButton()) {
+      const { buttons } = client;
+      const { customId } = interaction;
+      const button = buttons.get(customId);
+      if (!button) {
+        return new Error("There is no code for this button");
       }
       try {
-        await menu.execute(interection, client);
-      } catch(err) {
+        await button.execute(interaction, client);
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (interaction.isSelectMenu) {
+      const { selectMenus } = client;
+      const { customId } = interaction;
+      const menu = selectMenus.get(customId);
+      if (!menu) {
+        return new Error("There is no code for this menu");
+      }
+      try {
+        await menu.execute(interaction, client);
+      } catch (err) {
         console.log(err);
       }
     }
-  }
-}
+  },
+};

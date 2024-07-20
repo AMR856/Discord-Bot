@@ -4,14 +4,13 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Ping command to return a ping"),
-  async execute(interection, client) {
-    const message = await interection.deferReply(
+  async execute(interaction, client) {
+    const message = await interaction.deferReply(
       {fetchReply: true}
     );
     console.log("Got called");
-    console.log(interection);
-    const newMessage = `API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interection.createdTimestamp}\nGot handled`;
-    await interection.editReply(
+    const newMessage = `API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}\nGot handled`;
+    await interaction.editReply(
       {content: newMessage}
     );
   }
