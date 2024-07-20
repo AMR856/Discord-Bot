@@ -28,6 +28,18 @@ module.exports = {
       } catch(err) {
         console.log(err);
       }
+    } else if (interection.isSelectMenu) {
+      const { selectMenus } = client;
+      const { customId } = interection;
+      const menu = selectMenus.get(customId);
+      if (!menu) {
+        return new Error('There is no code for this menu');
+      }
+      try {
+        await menu.execute(interection, client);
+      } catch(err) {
+        console.log(err);
+      }
     }
   }
 }
