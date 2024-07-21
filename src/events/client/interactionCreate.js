@@ -55,7 +55,7 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
-    } else if (interaction.isSelectMenu) {
+    } else if (interaction.isSelectMenu()) {
       const { selectMenus } = client;
       const { customId } = interaction;
       const menu = selectMenus.get(customId);

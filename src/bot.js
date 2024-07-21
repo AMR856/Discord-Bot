@@ -3,7 +3,10 @@ dotenv.config();
 const token = process.env.token;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
-const client = new Client({ intents: GatewayIntentBits.Guilds });
+const { Guilds, GuildMessages, GuildMessageReactions } = GatewayIntentBits;
+const intentsArray = [Guilds, GuildMessages, GuildMessageReactions];
+// 32767 -> Allowing all intents
+const client = new Client({ intents: intentsArray });
 client.commands = new Collection();
 client.buttons = new Collection();
 client.selectMenus = new Collection();
