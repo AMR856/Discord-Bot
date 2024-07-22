@@ -3,7 +3,8 @@ const { SlashCommandBuilder, ConnectionService } = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("reactor")
-    .setDescription("Returns reactions.")
+    .setDescription(`number_of_seconds:your_reaction
+      maximum_number_of_reactions.number_of_seconds`)
     .addStringOption(option => 
       option.setName("input")
         .setDescription("The input string")
@@ -19,20 +20,23 @@ module.exports = {
     if (userInput.includes(':')) {
       const splittedUserInput = userInput.split(':');
       const time = splittedUserInput[0] * 1 * 1000;
+      console.log(time);
       const emoji = splittedUserInput[1];
       message.react(emoji);
-  
+      let counter = -1;
       const filter = (reaction, user) => {
-        return reaction.emoji.name == emoji && user.id == interaction.user.id;
+        // return reaction.emoji.name == emoji && user.id == interaction.user.id;
+        return true;
       };
       const collector = message.createReactionCollector({ filter, time: time });
       collector.on('collect', (reaction, user) => {
+        counter++;
         console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
       });
       collector.on("end", collected => {
-        console.log(`Collected ${collected.size} items`);
+        console.log(`Collected ${collected.size} items\nAnd the number of put reactions is ${counter}`);
       });
-    } else {
+    } else if (userInput.includes('.')) {
       const splittedUserInput = userInput.split('.');
       const max = splittedUserInput[0] * 1; 
       const time = splittedUserInput[1] * 1 * 1000;
