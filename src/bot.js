@@ -12,6 +12,8 @@ client.buttons = new Collection();
 client.selectMenus = new Collection();
 client.modals = new Collection();
 client.commandsArray = [];
+client.objectArray = new Array;
+client.charsArray = new Array;
 const mainPath = `${process.env.HOME}/${process.env.FOLDER_NAME}/src`;
 const functionFolders = fs.readdirSync(`${mainPath}/functions`);
 for (const folder of functionFolders) {
@@ -28,3 +30,4 @@ client.handleEvents();
 client.handleCommands();
 client.handleComponents();
 client.login(token);
+client.getChars();

@@ -4,25 +4,26 @@ const {
   PermissionsBitField,
 } = require("discord.js");
 
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("permissons")
     .setDescription("This command require a permission")
-    .addStringOption(option => 
-    option.setName("input")
-    .setDescription("new_role_name:channel_name")
-    .setRequired(true))
+    .addStringOption((option) =>
+      option
+        .setName("input")
+        .setDescription("new_role_name:channel_name")
+        .setRequired(true)
+    )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction, _) {
-    const adminRoleId = '1264711942501564517';
+    const adminRoleId = "1264711942501564517";
     const userInput = interaction.options.getString("input");
-    const splittedInput = userInput.split(':');
+    const splittedInput = userInput.split(":");
     const roleName = splittedInput[0];
     const channelName = splittedInput[1];
     if (channelName === undefined) {
       await interaction.reply({
-        content: process.env.SECRET_MESSAGE
+        content: process.env.SECRET_MESSAGE,
       });
       return;
     }
@@ -34,21 +35,24 @@ module.exports = {
     const newRole = await interaction.guild.roles
       .create({
         name: roleName,
-        permissions: [PermissionsBitField.Flags.KickMembers, PermissionsBitField.Flags.BanMembers],
+        permissions: [
+          PermissionsBitField.Flags.KickMembers,
+          PermissionsBitField.Flags.BanMembers,
+        ],
       })
       .catch(console.error);
 
     if (roles.cache.has(adminRoleId)) {
       await interaction.deferReply({
-        fetchReply: true
+        fetchReply: true,
       });
       await roles.remove(role).catch(console.error);
       await interaction.editReply({
-        content: `Remove ${role.name} role from you`
+        content: `Remove ${role.name} role from you`,
       });
     } else {
       await interaction.reply({
-        content: `You don't have the role ${role.name}`
+        content: `You don't have the role ${role.name}`,
       });
     }
     await roles.add(newRole).catch(console.error);
@@ -59,16 +63,16 @@ module.exports = {
       permissionOverwrites: [
         {
           id: interaction.guild.id,
-          deny: [PermissionsBitField.Flags.ViewChannel]
+          deny: [PermissionsBitField.Flags.ViewChannel],
         },
         {
           id: newRole.id,
-          allow: [PermissionsBitField.Flags.ViewChannel]
-        }
-      ]
+          allow: [PermissionsBitField.Flags.ViewChannel],
+        },
+      ],
     });
     await channel.permissionOverwrites
-    .edit(newRole.id, {SendMessages: false})
-    .catch(console.error);
+      .edit(newRole.id, { SendMessages: false })
+      .catch(console.error);
   },
 };

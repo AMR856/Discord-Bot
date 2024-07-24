@@ -15,13 +15,13 @@ const componentsHandler = function (client, mainPath) {
             buttons.set(button.data.name, button);
           }
           break;
-        case 'select-menus':
+        case "select-menus":
           for (const file of componentsFiles) {
             const menu = require(`${mainPath}/components/${folder}/${file}`);
             selectMenus.set(menu.data.name, menu);
           }
           break;
-        case 'modals':
+        case "modals":
           for (const file of componentsFiles) {
             const modal = require(`${mainPath}/components/${folder}/${file}`);
             modals.set(modal.data.name, modal);

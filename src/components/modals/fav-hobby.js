@@ -1,10 +1,12 @@
 module.exports = {
   data: {
-    name: 'fav-hobby'
+    name: "fav-hobby",
   },
   async execute(interaction, _) {
     await interaction.reply({
-      content: `Your favorite hobby is ${interaction.fields.getTextInputValue('favHobbyInput')}`
+      content: `Your favorite hobby is ${interaction.fields.getTextInputValue(
+        "favHobbyInput"
+      )}`,
     });
-  }
+  },
 };

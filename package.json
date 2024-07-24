@@ -10,10 +10,13 @@
   "description": "",
   "dependencies": {
     "@discordjs/rest": "^2.3.0",
+    "axios": "^1.7.2",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.92",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "request": "^2.88.2",
+    "sync-request": "^6.1.0"
   }
 }

@@ -1,10 +1,10 @@
 module.exports = {
   data: {
-    name: 'get-github'
+    name: "get-github",
   },
   async execute(interaction, _) {
     await interaction.reply({
-      content: 'https://github.com/AMR856'
+      content: "https://github.com/AMR856",
     });
-  }
+  },
 };

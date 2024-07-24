@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const commandEventsHandler =  function(client, mainPath) {
+const commandEventsHandler = function (client, mainPath) {
   client.handleEvents = () => {
     const eventFolders = fs.readdirSync(`${mainPath}/events`);
     for (const folder of eventFolders) {

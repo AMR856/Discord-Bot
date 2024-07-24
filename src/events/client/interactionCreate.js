@@ -31,7 +31,7 @@ module.exports = {
           ephemeral: true,
         });
       }
-    }  else if (interaction.type == InteractionType.ModalSubmit) {
+    } else if (interaction.type == InteractionType.ModalSubmit) {
       const { modals } = client;
       const { customId } = interaction;
       const modal = modals.get(customId);
@@ -43,7 +43,7 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
-    }else if (interaction.isButton()) {
+    } else if (interaction.isButton()) {
       const { buttons } = client;
       const { customId } = interaction;
       const button = buttons.get(customId);
@@ -65,6 +65,16 @@ module.exports = {
       try {
         await menu.execute(interaction, client);
       } catch (err) {
+        console.log(err);
+      }
+    }else if (interaction.type == InteractionType.ApplicationCommandAutocomplete) {
+      const { commands } = client;
+      const { commandName } = interaction;
+      const command = commands.get(commandName);
+      if (!command) return;
+      try{
+        await command.autocomplete(interaction, client);
+      } catch(err) {
         console.log(err);
       }
     }
