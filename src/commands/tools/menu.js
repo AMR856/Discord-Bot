@@ -4,6 +4,7 @@ const {
   SelectMenuBuilder,
   SelectMenuOptionBuilder,
 } = require("discord.js");
+const { authUser } = require("../../auth");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -16,6 +17,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction, _) {
+    if (!(await authUser(interaction))) return;
     const label = interaction.options._hoistedOptions[0]["value"];
     const menu = new SelectMenuBuilder()
       .setCustomId(label == "learn-coding" ? "learn-coding" : "Nothing")

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ConnectionService } = require("discord.js");
-
+const { authUser } = require("../../auth");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("reactor")
@@ -15,6 +15,7 @@ module.exports = {
     ),
   async execute(interaction, _) {
     // userInput -> type:emoji
+    if (!(await authUser(interaction))) return;
     const userInput = interaction.options.getString("input");
     const message = await interaction.reply({
       content: "React here!",

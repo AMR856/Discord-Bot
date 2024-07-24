@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-// const request = require('request');
+const { authUser } = require("../../auth");
 
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
         .setRequired(true)
     ),
   async autocomplete(interaction, client) {
+    if (!(await authUser(interaction))) return;
     const focusedValue = interaction.options.getFocused();
     const filtered = [];
     for (const char of client.charsArray) {

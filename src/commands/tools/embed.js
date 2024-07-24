@@ -1,10 +1,12 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { authUser } = require("../../auth");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("embed")
     .setDescription("Returns an embed"),
   async execute(interaction, client) {
+    if (!(await authUser(interaction))) return;
     const memberCount = interaction.guild.memberCount;
     const embed = new EmbedBuilder()
       .setTitle("English Cafe embed message")

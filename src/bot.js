@@ -3,6 +3,7 @@ dotenv.config();
 const token = process.env.token;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
+const mongoose = require('mongoose');
 const { Guilds, GuildMessages, GuildMessageReactions } = GatewayIntentBits;
 const intentsArray = [Guilds, GuildMessages, GuildMessageReactions];
 // 32767 -> Allowing all intents
@@ -31,3 +32,6 @@ client.handleCommands();
 client.handleComponents();
 client.login(token);
 client.getChars();
+(async () => {
+  await mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING).catch(console.error);
+})();

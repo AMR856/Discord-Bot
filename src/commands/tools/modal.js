@@ -5,12 +5,13 @@ const {
   TextInputBuilder,
   TextInputStyle,
 } = require("discord.js");
-
+const { authUser } = require("../../auth");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("modal")
     .setDescription("Makes a modal as you can see"),
   async execute(interaction, _) {
+    if (!(await authUser(interaction))) return;
     const modal = new ModalBuilder()
       .setCustomId("fav-hobby")
       .setTitle("Favorite Hobby?");

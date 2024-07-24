@@ -3,6 +3,7 @@ const {
   PermissionFlagsBits,
   PermissionsBitField,
 } = require("discord.js");
+const { authUser } = require("../../auth");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -16,6 +17,7 @@ module.exports = {
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction, _) {
+    if (!(await authUser(interaction))) return;
     const adminRoleId = "1264711942501564517";
     const userInput = interaction.options.getString("input");
     const splittedInput = userInput.split(":");

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 const commandEventsHandler = function (client, mainPath) {
   client.handleEvents = () => {
@@ -17,6 +18,21 @@ const commandEventsHandler = function (client, mainPath) {
               });
             } else {
               client.on(event.name, (...args) =>
+                event.execute(...args, client)
+              );
+            }
+          }
+          break;
+
+        case "mongo":
+          for (const file of eventFiles) {
+            const event = require(`${mainPath}/events/${folder}/${file}`);
+            if (event.once) {
+              client.once(event.name, (...args) => {
+                event.execute(...args, client);
+              });
+            } else {
+              mongoose.connection.on(event.name, (...args) =>
                 event.execute(...args, client)
               );
             }

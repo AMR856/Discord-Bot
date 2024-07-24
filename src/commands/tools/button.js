@@ -4,7 +4,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
 } = require("discord.js");
-
+const authUser = require("../../auth");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("button")
@@ -16,6 +16,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction, _) {
+    if (!(await authUser(interaction))) return;
     const label = interaction.options._hoistedOptions[0]["value"];
     const button = new ButtonBuilder()
       .setCustomId(label == "get-github" ? "get-github" : "get-linkedin")
