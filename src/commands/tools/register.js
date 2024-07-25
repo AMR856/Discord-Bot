@@ -19,7 +19,7 @@ module.exports = {
       });
       await user.save().catch(console.error);
       await interaction.reply({
-        content: `New User added and his/her name is: ${interaction.user.username}`,
+        content: `New User added and his/her name is: ${interaction.user.globalName}`,
       });
     } else {
       await interaction.reply({
