@@ -27,6 +27,12 @@ module.exports = {
       .fetch(user.id)
       .catch(console.error);
 
+    if (!member) {
+      await interaction.reply({
+        content: `Member is not here`,
+      });
+      return;
+    }
     if (!reason) reason = "No reason provided";
     const embed = new EmbedBuilder()
       .setTitle("Banning Message")
@@ -46,15 +52,28 @@ module.exports = {
       })
       .setURL("https://github.com/AMR856");
 
-    await user.send({ embeds: [embed] }).catch(console.error);
-
+    let gotError = 0;
     await member
       .ban({
         deleteMessageDays: 1,
         reason: reason,
       })
-      .catch(console.error);
+      .catch(async (error) => {
+        if (error.code === 50013) {
+          await interaction.reply({
+            content: "You can't kick someone higher in permissions",
+          });
+        }
+        gotError = 1;
+      });
 
+    if (gotError) return;
+
+    await user.send({ embeds: [embed] }).catch(async (error) => {
+      if (error.code === 50007) {
+        console.log("Can't send message to the user");
+      }
+    });
     await interaction.reply({
       content: `${user.tag} has been banned`,
     });

@@ -26,6 +26,12 @@ module.exports = {
       .fetch(user.id)
       .catch(console.error);
 
+    if (!member) {
+      await interaction.reply({
+        content: `Member is not here`,
+      });
+      return;
+    }
     if (!reason) reason = "No reason is provided";
     const embed = new EmbedBuilder()
       .setTitle("Kicking Message")
@@ -44,16 +50,29 @@ module.exports = {
         text: interaction.user.tag,
       })
       .setURL("https://github.com/AMR856");
+    let gotError = 0;
+    await member.kick(reason).catch(async (error) => {
+      if (error.code === 50013) {
+        await interaction.reply({
+          content: "You can't kick someone higher in permissions",
+        });
+      }
+      gotError = 1;
+    });
+    if (gotError) return;
     await user
       .send({
         embeds: [embed],
       })
-      .catch(console.error());
-
-    await member.kick(reason).catch(console.error);
+      .catch(async (error) => {
+        if (error.code === 50007) {
+          console.log("Can't send message to the user");
+        }
+      });
 
     await interaction.reply({
       content: `${user.tag} has been kicked`,
     });
   },
+  // 50007
 };
