@@ -35,3 +35,5 @@ client.getChars();
 (async () => {
   await mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING).catch(console.error);
 })();
+// UCj-ZvTVcl9mphVZiRlcNS-Q
+// https://youtube.com/feeds/videos.xml?channel_id=UCxMsgwldMZiuFTD6jjv32yQ

@@ -10,16 +10,20 @@
   "description": "",
   "dependencies": {
     "@discordjs/rest": "^2.3.0",
+    "@gonetone/get-youtube-id-by-url": "^2.0.0",
     "axios": "^1.7.2",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.92",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "moongose": "^1.0.0",
     "nodemon": "^3.1.4",
+    "python-shell": "^5.0.0",
     "request": "^2.88.2",
+    "rss-parser": "^3.13.0",
     "sync-request": "^6.1.0"
   }
 }
