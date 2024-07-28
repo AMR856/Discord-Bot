@@ -1,7 +1,7 @@
 module.exports = {
   name: "ready",
   once: true,
-  execute(client) {
+  async execute(client) {
     // client.checkVideos();
     console.log(`${client.user.tag} logged into discord`);
   },

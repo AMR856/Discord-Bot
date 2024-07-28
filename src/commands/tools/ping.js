@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("discord.js");
-// const mainPath = `${process.env.HOME}/${process.env.FOLDER_NAME}/src`;
 const { authUser } = require(`../../auth`);
 
 
