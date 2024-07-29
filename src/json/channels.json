@@ -1,0 +1,34 @@
+[
+  {
+    "label": "C",
+    "value": "https://www.youtube.com/playlist?list=PLdo5W4Nhv31a8UcMN9-35ghv8qyFWD9_S"
+  },
+  {
+    "label": "Python",
+    "value": "https://www.youtube.com/playlist?&list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs&pp=iAQB"
+  },
+  {
+    "label": "JavaScript",
+    "value": "https://www.youtube.com/playlist?&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&pp=iAQB"
+  },
+  {
+    "label": "Java",
+    "value": "https://www.youtube.com/playlist?&list=PLCInYL3l2AajYlZGzU_LVrHdoouf8W6ZN"
+  },
+  {
+    "label": "OS",
+    "value": "https://www.youtube.com/playlist?&list=PLiRL7CfiWlYG0YdUPcaY7R6CjCGrNIZB0"
+  },
+  {
+    "label": "Data Structure",
+    "value": "https://www.youtube.com/playlist?&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P"
+  },
+  {
+    "label": "NodeJS",
+    "value": "https://www.youtube.com/playlist?&list=PL1BztTYDF-QPdTvgsjf8HOwO4ZVl_LhxS"
+  },
+  {
+    "label": "OOP",
+    "value": "https://www.youtube.com/playlist?&list=PL1DUmTEdeA6KLEvIO0NyrkT91BVle8BOU"
+  }
+]

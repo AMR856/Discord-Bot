@@ -4,7 +4,7 @@ module.exports = {
   },
   async execute(interection, _) {
     await interection.reply({
-      content: `You selected ${interection.values[0]}`,
+      content: `${interection.values[0]}`,
     });
   },
 };
