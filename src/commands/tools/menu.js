@@ -21,7 +21,6 @@ module.exports = {
     const label = interaction.options._hoistedOptions[0]["value"];
     const jsonData = fs.readFileSync(`${__dirname}/../../json/channels.json`);
     const myObjects = JSON.parse(jsonData);
-    console.log(myObjects);
     const menu = new SelectMenuBuilder()
       .setCustomId(label == "learn-coding" ? "learn-coding" : "Nothing")
       .setMinValues(1)

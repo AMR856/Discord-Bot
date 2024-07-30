@@ -37,3 +37,4 @@ client.getChars();
 })();
 // UCj-ZvTVcl9mphVZiRlcNS-Q
 // https://youtube.com/feeds/videos.xml?channel_id=UCxMsgwldMZiuFTD6jjv32yQ
+// ephemeral can't be changed later when editing replies
