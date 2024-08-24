@@ -4,8 +4,8 @@ const token = process.env.token;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 const mongoose = require('mongoose');
-const { Guilds, GuildMessages, GuildMessageReactions } = GatewayIntentBits;
-const intentsArray = [Guilds, GuildMessages, GuildMessageReactions];
+const { Guilds, GuildMessages, GuildMessageReactions, MessageContent } = GatewayIntentBits;
+const intentsArray = [Guilds, GuildMessages, GuildMessageReactions, MessageContent];
 // 32767 -> Allowing all intents
 const client = new Client({ intents: intentsArray });
 client.commands = new Collection();

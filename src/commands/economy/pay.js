@@ -35,12 +35,12 @@ module.exports = {
     } else if (amount < 1.0) {
       return interaction.reply({
         content: "You can't send money this low 😂😂!!",
-        ephemeral: true,
+        // ephemeral: true,
       });
     } else if (amount > userStoredBalance.balance) {
       return interaction.reply({
         content: "You don't have this amount of money, you're broke lol 🐳",
-        ephemeral: true,
+        // ephemeral: true,
       });
     }
     const selectedUserBalance = await client.fetchBalance(
